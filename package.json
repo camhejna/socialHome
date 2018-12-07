@@ -1,0 +1,28 @@
+{
+  "name": "socialHome",
+  "version": "1.0.0",
+  "description": "Rotating social media homepage app from ss16",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/camhejna/socialHome.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/camhejna/socialHome/issues"
+  },
+  "homepage": "https://github.com/camhejna/socialHome#readme",
+  "devDependencies": {
+    "webpack": "^4.27.1",
+    "webpack-cli": "^3.1.2"
+  },
+  "dependencies": {
+    "jquery": "^3.3.1",
+    "three": "^0.99.0"
+  }
+}
