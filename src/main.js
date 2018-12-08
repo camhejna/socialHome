@@ -1,17 +1,16 @@
 /**
  * @author Cameron Hejna
- *
  **/
 
 var THREE = require('three');
 //import Detector from 'Detector.js'
 import $ from 'jquery'
 
-function component() {
-    let element = document.createElement('div');
-
-    return element;
-}
+// function component() {
+// 	let element = document.createElement('div');
+	
+//     return element;
+// }
 
  
  /*---CHECKS---*/
@@ -20,7 +19,7 @@ function component() {
 
 /*---DECLARATIONS---*/
 //basics
-var scene, camera, renderer;
+var container, scene, camera, renderer;
 var light, time, mouse, raycaster;
 var loader;
 
@@ -33,15 +32,24 @@ var twitter, tMap, tMat, instagram, iMap, iMat, facebook, fMap, fMat, soundcloud
 
 function init(){
 	//basics
+	container = document.getElementById( 'container' );
 	scene = new THREE.Scene();
 	camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 2000 );
 	//camera.position.set( 15, 15, 15 );
 	renderer = new THREE.WebGLRenderer();
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	
+	console.log(renderer);
+
 	//append scene to the page
-	document.body.appendChild( component() );
+	//document.body.appendChild( component() );
+	//component().appendChild(renderer.domElement);
 	
+
+	console.log(container);
+
+	container.appendChild( renderer.domElement );
+
 	//global light
 	light = new THREE.PointLight( 0xffffff, 1, 0, 2);
 	light.position.set( 0, 500, 100);
@@ -57,7 +65,6 @@ function init(){
 	raycaster = new THREE.Raycaster();
 	
 	//loader
-	
 	loader = new THREE.TextureLoader();
 	loader.setPath( './textures/' );
 	
@@ -196,5 +203,4 @@ function render(){
 /*---RUN---*/
 console.log("init() call next...");
 init();
-
 /*---EOF---*/
