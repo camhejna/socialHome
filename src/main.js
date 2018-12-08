@@ -156,7 +156,6 @@ function render(){
 	//handlers
 	handleMovement();
 	handleRay();
-	//handleText();
 	
 	time++;
 }
