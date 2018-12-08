@@ -2,15 +2,21 @@
  * @author Cameron Hejna
  *
  **/
+
+var THREE = require('three');
+//import Detector from 'Detector.js'
+import $ from 'jquery'
+
+function component() {
+    let element = document.createElement('div');
+
+    return element;
+}
+
  
  /*---CHECKS---*/
 //webGL check
-if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
-
-//mobile check
-if( isMobile ){
-	//redirect to mobile homepage
-}
+//if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
 
 /*---DECLARATIONS---*/
 //basics
@@ -32,7 +38,9 @@ function init(){
 	//camera.position.set( 15, 15, 15 );
 	renderer = new THREE.WebGLRenderer();
 	renderer.setSize( window.innerWidth, window.innerHeight );
-	document.body.appendChild( renderer.domElement );
+	
+	//append scene to the page
+	document.body.appendChild( component() );
 	
 	//global light
 	light = new THREE.PointLight( 0xffffff, 1, 0, 2);
@@ -184,5 +192,9 @@ function render(){
 	
 	time++;
 }
+
+/*---RUN---*/
+console.log("init() call next...");
+init();
 
 /*---EOF---*/
