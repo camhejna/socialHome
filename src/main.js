@@ -3,19 +3,11 @@
  **/
 
 var THREE = require('three');
-//import Detector from 'Detector.js'
-import $ from 'jquery'
-
-// function component() {
-// 	let element = document.createElement('div');
-	
-//     return element;
-// }
-
+var Detector = require('./Detector.js');
  
  /*---CHECKS---*/
 //webGL check
-//if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
+if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
 
 /*---DECLARATIONS---*/
 //basics
@@ -25,8 +17,6 @@ var loader;
 
 //util
 var twitter, tMap, tMat, instagram, iMap, iMat, facebook, fMap, fMat, soundcloud, sMap, sMat, spotify, spMap, spMat, social;
-//var constructionBanner; //this will be a warning banner displayed on incomplete pages & areas of the site.
-//is there a way to determine SOCIAL_COUNT based on computer specs?
 
 /*---FUNCTIONS---*/
 
@@ -35,19 +25,8 @@ function init(){
 	container = document.getElementById( 'container' );
 	scene = new THREE.Scene();
 	camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 2000 );
-	//camera.position.set( 15, 15, 15 );
 	renderer = new THREE.WebGLRenderer();
 	renderer.setSize( window.innerWidth, window.innerHeight );
-	
-	console.log(renderer);
-
-	//append scene to the page
-	//document.body.appendChild( component() );
-	//component().appendChild(renderer.domElement);
-	
-
-	console.log(container);
-
 	container.appendChild( renderer.domElement );
 
 	//global light
@@ -55,20 +34,15 @@ function init(){
 	light.position.set( 0, 500, 100);
 	scene.add( light );
 	
-	//time
 	time = 0.0;
 	
-	//mouse
 	mouse = new THREE.Vector2();
 	
-	//raycaster
 	raycaster = new THREE.Raycaster();
 	
-	//loader
 	loader = new THREE.TextureLoader();
 	loader.setPath( './textures/' );
 	
-	//util
 	twitter = [];
 	tMap = loader.load( 'tweet.png');
 	tMat = new THREE.SpriteMaterial( { map: tMap, color: 0xffffff } );
@@ -121,16 +95,14 @@ function init(){
 	
 	window.addEventListener( "resize", onWindowResize, false );
 	document.addEventListener( "mousemove", onMouseMove, false );
-	//document.addEventListener( "mouseover", onMouseOver, false );
 	document.addEventListener( "mousedown", onMouseDown, false );
-	//document.addEventListener( "mouseup", onMouseUp, false );
 	document.addEventListener( "touchend", onTouch, false );
 	document.addEventListener( "touchmove", onTouchMove, false );
 	
 	render();
 }
 
-//
+/*---EVENT HANDLERS---*/
 
 function onWindowResize(event){
 	camera.aspect = window.innerWidth / window.innerHeight;
@@ -139,23 +111,16 @@ function onWindowResize(event){
 }
 
 function onMouseMove( event ){
-	// calculate mouse position in normalized device coordinates
-	// (-1 to +1) for both components
-
 	mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
 	mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
 }
 
 function onMouseDown( event ){
-	event.preventDefault();
-	
-	
+	event.preventDefault();	
 	var intersects = raycaster.intersectObjects( scene.children );
 	if( intersects.length > 0 ){
 		window.open(intersects[0].object.userData.URL);
 	}
-	
-	//console.log(intersects);
 }
 
 function onTouch( event ){
@@ -166,7 +131,7 @@ function onTouchMove( event ){
 	onMouseMove( event );
 }
 
-//
+/*---SCENE HANDLERS---*/
 
 function handleMovement(){
 	camera.position.x = (15 * Math.cos( time / 450 ));
@@ -182,11 +147,7 @@ function handleRay(){
 	raycaster.setFromCamera( mouse, camera );
 }
 
-function handleText(){
-	//$('div.info').append('.');
-}
-
-//
+/*---RENDER---*/
 
 function render(){
 	requestAnimationFrame( render );
@@ -195,12 +156,12 @@ function render(){
 	//handlers
 	handleMovement();
 	handleRay();
-	handleText();
+	//handleText();
 	
 	time++;
 }
 
 /*---RUN---*/
-console.log("init() call next...");
 init();
+
 /*---EOF---*/
