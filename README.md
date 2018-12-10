@@ -1,2 +1,4 @@
-# socialHome
-Rotating social media homepage app from ss16
+socialHome
+==========
+
+ThreeJS app from ss16 homepage. A bunch of social media icons rotating in space, clickable via a raycaster. 
