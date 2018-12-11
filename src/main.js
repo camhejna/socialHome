@@ -9,7 +9,7 @@ var Detector = require('./Detector.js');
 //webGL check
 if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
 
-/*---DECLARATIONS---*/
+/*---VARS---*/
 //basics
 var container, scene, camera, renderer;
 var light, time, mouse, raycaster;
@@ -19,9 +19,7 @@ var loader;
 var twitter, tMap, tMat, instagram, iMap, iMat, facebook, fMap, fMat, soundcloud, sMap, sMat, spotify, spMap, spMat, social;
 
 /*---FUNCTIONS---*/
-
 function init(){
-	//basics
 	container = document.getElementById( 'container' );
 	scene = new THREE.Scene();
 	camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 2000 );
@@ -29,7 +27,6 @@ function init(){
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	container.appendChild( renderer.domElement );
 
-	//global light
 	light = new THREE.PointLight( 0xffffff, 1, 0, 2);
 	light.position.set( 0, 500, 100);
 	scene.add( light );
@@ -103,7 +100,6 @@ function init(){
 }
 
 /*---EVENT HANDLERS---*/
-
 function onWindowResize(event){
 	camera.aspect = window.innerWidth / window.innerHeight;
 	camera.updateProjectionMatrix();
@@ -132,14 +128,11 @@ function onTouchMove( event ){
 }
 
 /*---SCENE HANDLERS---*/
-
 function handleMovement(){
 	camera.position.x = (15 * Math.cos( time / 450 ));
 	camera.position.y = (15 * Math.sin( time / 450 ));
 	camera.position.z = (15 * Math.sin( time / 450 ));
-	
 
-	
 	camera.lookAt( ( new THREE.Vector3( 0, 0, 0 ) ) );
 }
 
@@ -148,12 +141,10 @@ function handleRay(){
 }
 
 /*---RENDER---*/
-
 function render(){
 	requestAnimationFrame( render );
 	renderer.render( scene, camera );
 	
-	//handlers
 	handleMovement();
 	handleRay();
 	
