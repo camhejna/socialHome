@@ -1,6 +1,6 @@
 {
   "name": "social-home",
-  "version": "1.0.0",
+  "version": "0.2.0",
   "description": "Rotating social media homepage app from ss16",
   "main": "index.js",
   "scripts": {
